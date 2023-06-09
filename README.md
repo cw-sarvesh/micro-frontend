@@ -1,2 +1,3 @@
 # Micro frontend
-test
+
+- Similar to micro-service.

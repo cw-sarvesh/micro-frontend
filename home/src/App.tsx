@@ -6,7 +6,7 @@ import { CartPage } from 'cart/CartPage';
 const App = () => (
   <div className="mt-10 text-3xl mx-auto max-w-6xl">
     <Header />
-    <CartPage app={'Calling from home app'} />
+    <CartPage app={'Calling from home'} />
   </div>
 );
 ReactDOM.render(<App />, document.getElementById('app'));

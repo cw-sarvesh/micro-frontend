@@ -1,5 +1,21 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const fs = require('fs');
+const path = require('path');
+
+// Manually expose all files in modules folder
+const exposedModules = fs
+  .readdirSync('./src/modules')
+  .filter((file) => file.endsWith('.tsx'))
+  .reduce((exposes, file) => {
+    const moduleName = file.replace('.tsx', '');
+    exposes[`./${moduleName}`] = path.resolve(
+      __dirname,
+      `./src/modules/${file}`
+    );
+    return exposes;
+  }, {});
+
 
 const deps = require('./package.json').dependencies;
 module.exports = (_, argv) => ({
@@ -43,12 +59,8 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: 'cart',
       filename: 'remoteEntry.js',
-      remotes: {
-        home: 'home@http://localhost:3000/remoteEntry.js',
-      },
-      exposes: {
-        './CartPage': './src/CartPage.tsx',
-      },
+      remotes: {},
+      exposes: exposedModules,
       shared: {
         ...deps,
         react: {

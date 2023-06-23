@@ -18,12 +18,24 @@ const App = () => {
     setCount(count + 1);
   };
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [state, setState] = React.useState<string>('');
 
   return (
-    <div className="mt-10 text-3xl mx-auto max-w-6xl">
+    <div className="mt-10 text-2xl mx-auto max-w-6xl">
       <Header />
+      <h1>CSR Example</h1>
       <CartPage app={count} />
       <button onClick={increment}>Click me +1</button>
+      <h1> Lazy Load Example</h1>
+      <div style={{ padding: '1rem' }}>
+        <h3>Type something into this input</h3>
+        <input
+          type="text"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+          placeholder="Type Something..."
+        />
+      </div>
       <div>
         <button onClick={() => setIsVisible((value) => !value)}>
           Toggle Content
@@ -31,7 +43,7 @@ const App = () => {
       </div>
       {isVisible && (
         <React.Suspense fallback={<h1>Loading....</h1>}>
-          <Content content={'hello'} />
+          <Content content={state} />
         </React.Suspense>
       )}
       <Header />

@@ -15,8 +15,15 @@ const exposedModules = fs
     );
     return exposes;
   }, {});
-
-
+const optimization = {
+  chunkIds: 'named', // for this example only: readable filenames in production too
+};
+const stats = {
+  chunks: true,
+  modules: false,
+  chunkModules: true,
+  chunkOrigins: true,
+};
 const deps = require('./package.json').dependencies;
 module.exports = (_, argv) => ({
   output: {
@@ -54,7 +61,7 @@ module.exports = (_, argv) => ({
       },
     ],
   },
-
+  optimization,
   plugins: [
     new ModuleFederationPlugin({
       name: 'cart',
@@ -77,4 +84,5 @@ module.exports = (_, argv) => ({
       template: './src/index.html',
     }),
   ],
+  stats,
 });

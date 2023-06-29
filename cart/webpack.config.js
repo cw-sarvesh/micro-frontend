@@ -61,7 +61,7 @@ module.exports = (_, argv) => ({
       },
     ],
   },
-  optimization,
+  // optimization,
   plugins: [
     new ModuleFederationPlugin({
       name: 'cart',

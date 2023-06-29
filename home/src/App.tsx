@@ -11,6 +11,7 @@ const Content = React.lazy(
 );
 
 import { CartPage } from 'cart/CartPage';
+import { TestPage } from 'cart/TestPage';
 
 const App = () => {
   const [count, setCount] = React.useState(0);
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <div className="mt-10 text-2xl mx-auto max-w-6xl">
+      <TestPage app={"EMI"}/>
       <Header />
       <h1>CSR Example</h1>
       <CartPage app={count} />

@@ -6,10 +6,6 @@ import { importRemote } from 'module-federation-import-remote';
 import './index.scss';
 import type { ContentProps } from 'cart/Content';
 
-const Content = React.lazy(
-  () => import('cart/Content') as Promise<{ default: React.FC<ContentProps> }>
-);
-
 import { CartPage } from 'cart/CartPage';
 import { TestPage } from 'cart/TestPage';
 
@@ -23,7 +19,7 @@ const App = () => {
 
   return (
     <div className="mt-10 text-2xl mx-auto max-w-6xl">
-      <TestPage app={"EMI"}/>
+      <TestPage app={'EMI'} />
       <Header />
       <h1>CSR Example</h1>
       <CartPage app={count} />
@@ -43,11 +39,7 @@ const App = () => {
           Toggle Content
         </button>
       </div>
-      {isVisible && (
-        <React.Suspense fallback={<h1>Loading....</h1>}>
-          <Content content={state} />
-        </React.Suspense>
-      )}
+
       <Header />
     </div>
   );

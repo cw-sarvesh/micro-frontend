@@ -47,17 +47,6 @@ module.exports = (_, argv) => ({
         cart: 'cart@http://localhost:3001/remoteEntry.js',
       },
       exposes: {},
-      shared: {
-        ...deps,
-        react: {
-          singleton: true,
-          requiredVersion: deps.react,
-        },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: deps['react-dom'],
-        },
-      },
     }),
     new HtmlWebPackPlugin({
       template: './src/index.html',

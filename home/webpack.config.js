@@ -44,7 +44,7 @@ module.exports = (_, argv) => ({
       name: 'home',
       filename: 'remoteEntry.js',
       remotes: {
-        cart: 'cart@http://localhost:3001/remoteEntry.js',
+        app2: 'app2@http://localhost:3002/remoteEntry.js',
       },
       exposes: {},
     }),
